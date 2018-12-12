@@ -1,0 +1,7 @@
+.navbar-brand > img {
+    margin-right: 80px;
+}
+
+.navbar-collapse .navbar-nav > li > a {
+    margin-right: 60px;
+}

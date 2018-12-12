@@ -1,0 +1,14 @@
+.talk-bubble {
+    display: inline-block;
+    position: relative;
+    width: 800px;
+    height: auto;
+    background-color: lightgray;
+}
+
+.talk-text {
+    padding: 1em;
+    margin-left: 10px;
+    text-align: left;
+    line-height: 1.5em;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.zju.cst.demo.dao.QuestionDAO">
+    <sql id="table">question</sql>
+    <sql id="selectFields">id, title, content, created_date, user_id, comment_count</sql>
+    <select id="selectLatestQuestions" resultType="edu.zju.cst.demo.model.Question">
+        SELECT
+            <include refid="selectFields"/>
+        FROM
+          <include refid="table"/>
+        <if test="userID != 0">
+            WHERE user_id = #{userID}
+        </if>
+        ORDER BY id DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+</mapper>
