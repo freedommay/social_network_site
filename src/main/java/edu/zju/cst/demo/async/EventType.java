@@ -2,7 +2,7 @@ package edu.zju.cst.demo.async;
 
 public enum EventType {
     LIKE(0),
-    Comment(1),
+    COMMENT(1),
     LOGIN(2),
     MAIL(3),
     FOLLOW(4),

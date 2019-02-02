@@ -54,12 +54,12 @@ public class InitDatabaseTest {
 
     @Test
     public void testQuestionDAO() {
-        for (int i = 0; i < MAX_QUESTION; i++) {
+        for (int i = 10; i < 10 + MAX_QUESTION; i++) {
             String title = String.format("TITLE_%d", i);
             String content = String.format("CONTENT_Blablabla_%d", i);
             Date createdDate = new Date();
             int userID = i + 1;
-            int commentCount = i;
+            int commentCount = 0;
             Question question = new Question(title, content, createdDate, userID, commentCount);
             questionDAO.addQuestion(question);
         }

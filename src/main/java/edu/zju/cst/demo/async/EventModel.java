@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class EventModel {
     private EventType type;
-    private int actorID;
-    private int entityType;
+    private int actorID;  // 触发者
+    private int entityType;  // 事件类型
     private int entityID;
     private int entityOwnerID;
 

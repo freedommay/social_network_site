@@ -1,5 +1,8 @@
 package edu.zju.cst.demo.controller;
 
+import edu.zju.cst.demo.async.EventModel;
+import edu.zju.cst.demo.async.EventProducer;
+import edu.zju.cst.demo.async.EventType;
 import edu.zju.cst.demo.model.Comment;
 import edu.zju.cst.demo.model.EntityType;
 import edu.zju.cst.demo.model.HostHolder;
@@ -33,6 +36,9 @@ public class CommentController {
     @Autowired
     SensitiveService sensitiveService;
 
+    @Autowired
+    EventProducer eventProducer;
+
     @RequestMapping(path = {"/addComment"}, method = {RequestMethod.POST})
         public String addComment(@RequestParam("questionID") int questionID,
                                 @RequestParam("content") String content) {
@@ -49,6 +55,7 @@ public class CommentController {
             commentService.addComment(comment);
             int count = commentService.getCommentCount(comment.getEntityID(), comment.getEntityType());
             questionService.updateCommentCount(comment.getEntityID(), count);
+            eventProducer.fireEvent(new EventModel(EventType.COMMENT).setActorID(comment.getUserID()).setEntityID(questionID));
         } catch (Exception e) {
             e.printStackTrace();
         }

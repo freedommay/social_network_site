@@ -9,7 +9,7 @@ public class Feed {
     private int type;
     private int userID;
     private Date createdDate;
-    private String Data;
+    private String data;
     private JSONObject jsonObject = null;
 
     public int getId() {
@@ -44,12 +44,16 @@ public class Feed {
         this.createdDate = createdDate;
     }
 
-    public String getData(String key) {
+    public String get(String key) {
         return jsonObject == null ? null : jsonObject.getString(key);
      }
 
+     public String getData() {
+        return data;
+     }
+
     public void setData(String data) {
-        Data = data;
+        this.data = data;
         jsonObject = JSONObject.parseObject(data);
     }
 }
