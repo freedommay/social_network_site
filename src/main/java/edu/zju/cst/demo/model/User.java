@@ -1,19 +1,23 @@
 package edu.zju.cst.demo.model;
 
+import java.util.Date;
+
 public class User {
     private int id;
     private String name;
     private String password;
     private String salt;
     private String headURL;
+    private Date lastLoginTime;
 
     public User() {}
 
-    public User(String name, String password, String salt, String headURL) {
+    public User(String name, String password, String salt, String headURL, Date lastLoginTime) {
         this.name = name;
         this.password = password;
         this.salt = salt;
         this.headURL = headURL;
+        this.lastLoginTime = lastLoginTime;
     }
 
     public int getId() {
@@ -54,5 +58,13 @@ public class User {
 
     public void setHeadURL(String headURL) {
         this.headURL = headURL;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
     }
 }

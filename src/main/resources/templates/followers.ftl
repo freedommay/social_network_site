@@ -22,7 +22,7 @@
                     <div>
                         <span>${f.followerCount}粉丝/</span>
                         <span>${f.followeeCount}关注/</span>
-                        <span>${f.commentCount}回答/</span>
+                        <span>${f.commentCount}评论/</span>
                     </div>
                 </div>
                 <div class="col-sm-3">

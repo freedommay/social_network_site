@@ -33,7 +33,7 @@
                         <p>
                             <a href="/user/${feed.userID}">
                                 ${feed.userName}
-                            </a> 关注了问题
+                            </a> 关注了微博
                             <a href="/question/${feed.questionID}">
                                 ${feed.questionTitle}
                             </a>
@@ -74,7 +74,7 @@
                     <p>
                         <a href="/user/${feed.userID}">
                             ${feed.userName}
-                        </a> 评论了问题
+                        </a> 评论了微博
                         <a href="/question/${feed.questionID}">
                             ${feed.questionTitle}
                         </a>
@@ -97,18 +97,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">提问</h5>
+                <h5 class="modal-title" id="exampleModalLabel">发布</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="question" placeholder="你的问题">
+                    <input type="text" class="form-control" id="question" placeholder="微博标题">
                 </div>
                 <div class="form-group">
-                    <label for="textarea">问题描述</label>
-                    <textarea class="form-control" id="textarea" rows="3" placeholder="问题背景，条件等"></textarea>
+                    <label for="textarea">微博内容</label>
+                    <textarea class="form-control" id="textarea" rows="3" placeholder="不多于140字"></textarea>
                 </div>
             </div>
             <div class="modal-footer">

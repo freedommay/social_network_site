@@ -1,6 +1,7 @@
 package edu.zju.cst.demo.util;
 
 import com.alibaba.fastjson.JSONObject;
+import edu.zju.cst.demo.model.ViewObject;
 
 import java.util.Map;
 
@@ -25,6 +26,15 @@ public class Utils {
         JSONObject json = new JSONObject();
         json.put("code", code);
         for (Map.Entry<String, Object> entry : map.entrySet()) {
+            json.put(entry.getKey(), entry.getValue());
+        }
+        return json.toJSONString();
+    }
+
+    public static String getJSONString(int code, ViewObject vo) {
+        JSONObject json = new JSONObject();
+        json.put("code", code);
+        for (Map.Entry<String, Object> entry : vo.getObjs().entrySet()) {
             json.put(entry.getKey(), entry.getValue());
         }
         return json.toJSONString();

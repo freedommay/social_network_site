@@ -37,7 +37,8 @@ public class UserService {
         String salt = UUID.randomUUID().toString().substring(0, 5);
         password = DigestUtils.md5Hex(password + salt);
         String headURL = String.format("http://images.nowcoder.com/head/%dt.png", new Random().nextInt(1000));
-        user = new User(username, password, salt, headURL);
+        Date lastLoginTime = new Date();
+        user = new User(username, password, salt, headURL, lastLoginTime);
         userDAO.addUser(user);
         String ticket = addLoginTicket(user.getId());
         map.put("ticket", ticket);
@@ -65,6 +66,8 @@ public class UserService {
             return map;
         }
         String ticket = addLoginTicket(user.getId());
+//        user.setLastLoginTime(new Date());
+//        userDAO.updateLastUpdateTime(user);
         map.put("ticket", ticket);
         return map;
     }
@@ -84,5 +87,9 @@ public class UserService {
 
     public void logout(String ticket) {
         loginTicketDAO.updateStatus(ticket, 1);
+        LoginTicket loginTicket = loginTicketDAO.selectByTicket(ticket);
+        User user = userDAO.selectById(loginTicket.getUserID());
+        user.setLastLoginTime(new Date());
+        userDAO.updateLastUpdateTime(user);
     }
 }

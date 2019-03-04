@@ -6,7 +6,7 @@
 <div class="container" style="margin-top: 20px">
     <div class="card">
         <div class="card-header">
-        ${curUser.name}粉丝${followeeCount}人
+        ${curUser.name}关注${followeeCount}人
         </div>
         <#list followees as f>
         <div class="card-body border-bottom">
@@ -22,7 +22,7 @@
                     <div>
                         <span>${f.followerCount}粉丝/</span>
                         <span>${f.followeeCount}关注/</span>
-                        <span>${f.commentCount}回答/</span>
+                        <span>${f.commentCount}评论/</span>
                     </div>
                 </div>
                 <div class="col-sm-3">

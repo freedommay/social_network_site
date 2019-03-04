@@ -5,12 +5,12 @@
 <body class="text-center">
 <div class="container">
     <form action="/reg/" id="regloginform" method="post" class="form-signin">
-        <img class="mb-4" src="/image/question-mark.jpg" alt="" width="72" height="72">
+        <img class="mb-4" src="/image/logo.jpg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">
             <#if msg??>
                 ${msg}
             <#else>
-                与世界分享你的知识
+                与世界建立连接
             </#if>
         </h1>
         <label for="name" class="sr-only">用户名</label>

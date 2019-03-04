@@ -65,6 +65,16 @@ public class JedisAdapter implements InitializingBean {
         return 0;
     }
 
+    // 当count=0时，删除key中所有值为value的元素
+    public long lrem(String key, long count, String value) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.lrem(key, count, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public List<String> brpop(int timeout, String value) {
         try (Jedis jedis = jedisPool.getResource()) {
             return jedis.brpop(timeout, value);
