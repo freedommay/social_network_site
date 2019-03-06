@@ -4,6 +4,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.Transaction;
 
 import java.io.IOException;
@@ -17,7 +18,10 @@ public class JedisAdapter implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        jedisPool = new JedisPool("redis://localhost:6379/1");
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxIdle(8);
+        config.setMaxTotal(18);
+        jedisPool = new JedisPool(config, "localhost", 6379, 2000, "redis");
     }
 
     public long sadd(String key, String value) {

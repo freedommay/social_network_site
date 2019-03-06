@@ -56,12 +56,10 @@ public class IndexController {
 
 
     @RequestMapping(path = {"/", "/index"})
-//    @ResponseBody
     public String index(Model model,
                         @RequestParam(value = "offset", defaultValue = OFFSET) int offset,
                         @RequestParam(value = "limit", defaultValue = LIMIT) int limit) {
         model.addAttribute("vos", getQuestions(0, 0, 10));
-//        List<ViewObject> vos = getQuestions(0, offset, limit);
         return "index";
     }
 

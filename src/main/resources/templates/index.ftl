@@ -31,7 +31,6 @@
                             '<div class="col-sm-8 col-lg-8 col-md-8 col-xl-8"><div class="row"><div class="col-sm-3" align="center">' +
                             '<img width="100px" height="100px" alt="image" src="' + response[i].objs.user.headURL + '"/>';
                         if (response[i].objs.current) {
-                            console.log(response[i].objs.current);
                             if (userId == response[i].objs.current.id) {
                                 result += '<button class="btn btn-light" data-toggle="modal" data-target="#messageModal"' +
                                     ' style="margin-top: 20px" data-id="' + response[i].objs.user.id + '" disabled>发送私信</button>';
@@ -43,7 +42,22 @@
 
                         result += '</div><div class="col-sm-9"><p><a href=' + '"/question/' + response[i].objs.question.id + '"' +
                             ' style="font-family: 微软雅黑;font-size: 18px;">' + response[i].objs.question.title +
-                            '</a></p>' + '</div>' + '</div></div></div>'
+                            '</a></p>' + '<div class="row"><div class="col-sm-4"><a href="/user/' +response[i].objs.user.id +
+                              '">' + response[i].objs.user.name + '</a></div><div class="col-sm-6"><p>' + response[i].objs.question.createdDate +
+                            '</p></div></div>' + '<div class="row-fluid"><div class="col-sm-12"><p>' + response[i].objs.question.content +
+                                '</p></div></div>' + '<div class="row"><div class="col-sm-4"><p>';
+                        if (response[i].objs.current) {
+                            if (response[i].objs.followed) {
+                                result += '<button type="button" class="btn btn-light" onclick="unfollow()" value="' +
+                                    response[i].objs.user.id + '">取消关注</button>';
+                            } else {
+                                result += '<button type="button" class="btn btn-light" onclick="follow()" value="' +
+                                    response[i].objs.user.id + '">关注作者</button>';
+                            }
+                        }
+
+                        result += '</p></div><div class="col-sm-4"><p>评论数：' + response[i].objs.question.commentCount +
+                            '</p></div></div></div></div></div></div>';
 
                     }
                     $('.js-blog-list').append(result);
@@ -59,84 +73,9 @@
 <body>
 <#include "navbar.ftl">
 <div class="container" style="margin-top: 50px">
-
-
     <div class="js-blog-list">
 
     </div>
-    <!-- 改用ajax读取
-    <#list vos as vo>
-        <hr/>
-        <div class="row">
-            <div class="col-sm-8 col-lg-8 col-md-8 col-xl-8">
-                <div class="row">
-                    <div class="col-sm-3" align="center">
-                        <img width="100px" height="100px" alt="image" src="${vo.user.headURL}"/>
-                        <#if user??>
-                        <#if vo.user.id == user.id>
-                        <button class="btn btn-light" data-toggle="modal" data-target="#messageModal"
-                                style="margin-top: 20px" data-id="${vo.user.id}" disabled>发送私信
-                        </button>
-                        <#else>
-                        <button class="btn btn-light" data-toggle="modal" data-target="#messageModal"
-                                style="margin-top: 20px" data-id="${vo.user.id}">发送私信
-                            </#if>
-                            </#if>
-                    </div>
-                    <div class="col-sm-9">
-                        <p>
-                            <a href="/question/${vo.question.id}"
-                               style="font-family: 微软雅黑;font-size: 18px;">
-                                ${vo.question.title}
-                            </a>
-                        </p>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <a href="/user/${vo.user.id}">
-                                    ${vo.user.name}
-                                </a>
-                            </div>
-                            <div class="col-sm-6">
-                                <p>
-                                    ${vo.question.createdDate?datetime}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row-fluid">
-                            <div class="col-sm-12">
-                                <p>
-                                    ${vo.question.content}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <p>
-                                    <#if user??>
-                                        <#if vo.followed>
-                                            <button type="button" class="btn btn-light" onclick="unfollow()"
-                                                    value="${vo.user.id}">取消关注
-                                            </button>
-                                        <#else>
-                                            <button type="button" class="btn btn-light" onclick="follow()"
-                                                    value="${vo.user.id}">关注作者
-                                            </button>
-                                        </#if>
-                                    </#if>
-                                </p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p>
-                                    评论数：${vo.question.commentCount}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </#list>
-     -->
     <div class="container text-center">
         <button class="btn btn-default js-load-more">加载更多</button>
     </div>
